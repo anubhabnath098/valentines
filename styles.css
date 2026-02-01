@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Question Screens */
+.question-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+.question-screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Emoji Face */
+.emoji-face {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 100px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 250px;
+    background: #f9f9f9;
+    border: 3px solid #ff6b9d;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.6s ease;
+    z-index: 5;
+    opacity: 0;
+    animation: letterSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes letterSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.letter h2 {
+    color: #ff6b9d;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+}
+
+.yes-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+}
+
+.no-btn {
+    background: #ddd;
+    color: #666;
+    /* Use 'fixed' by default so the coordinate system is the same from the start */
+    position: fixed; 
+    /* These reset any inherited layout from the Flexbox container */
+    left: auto;
+    top: auto;
+    /* Ensure it doesn't have any 'transform' that shifts it after JS moves it */
+    transform: none !important;
+    /* Short transition is key for a 'chase' feel; too long makes it float away */
+    transition: left 0.2s ease-out, top 0.2s ease-out;
+    z-index: 9999;
+}
+
+/* Final Screen */
+.final-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.final-screen.active {
+    display: flex;
+}
+
+/* Flower */
+.flower {
+    position: absolute;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: growFlower 2s ease-out forwards;
+}
+
+@keyframes growFlower {
+    to {
+        bottom: 100px;
+    }
+}
+
+.stem {
+    width: 8px;
+    height: 250px;
+    background: linear-gradient(to bottom, #2d5016 0%, #4a7c2e 100%);
+    margin: 0 auto;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+}
+
+.leaf {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: #4a7c2e;
+    border-radius: 0 50% 50% 0;
+    transform-origin: left center;
+}
+
+.leaf-left {
+    left: -35px;
+    top: 100px;
+    transform: rotate(-45deg);
+}
+
+.leaf-right {
+    right: -35px;
+    top: 150px;
+    transform: rotate(45deg) scaleX(-1);
+}
+
+.petal {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+    border-radius: 50% 50% 50% 0;
+    top: -40px;
+    left: 50%;
+    transform-origin: bottom left;
+    animation: petalBloom 0.6s ease-out backwards;
+}
+
+@keyframes petalBloom {
+    from {
+        transform: scale(0) rotate(0deg);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.petal-1 {
+    transform: translateX(-50%) rotate(0deg);
+    animation-delay: 2.2s;
+}
+
+.petal-2 {
+    transform: translateX(-50%) rotate(72deg);
+    animation-delay: 2.3s;
+}
+
+.petal-3 {
+    transform: translateX(-50%) rotate(144deg);
+    animation-delay: 2.4s;
+}
+
+.petal-4 {
+    transform: translateX(-50%) rotate(216deg);
+    animation-delay: 2.5s;
+}
+
+.petal-5 {
+    transform: translateX(-50%) rotate(288deg);
+    animation-delay: 2.6s;
+}
+
+.center {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #ffd700 0%, #ffed4e 100%);
+    border-radius: 50%;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: centerPop 0.3s ease-out backwards;
+    animation-delay: 2.7s;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes centerPop {
+    from {
+        transform: translateX(-50%) scale(0);
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Love Letter */
+.love-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: letterAppear 1s ease-out forwards;
+    animation-delay: 3s;
+    z-index: 100;
+}
+
+@keyframes letterAppear {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.paper {
+    width: 500px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #fffef7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 2px solid #ff6b9d;
+    position: relative;
+}
+
+.paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 2px;
+    height: 100%;
+    background: #ffc0cb;
+    opacity: 0.3;
+}
+
+.paper-content {
+    position: relative;
+    z-index: 1;
+}
+
+.paper h1 {
+    color: #ff6b9d;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.3);
+}
+
+.letter-text {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    text-align: justify;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 40px;
+    font-size: 1.2em;
+    color: #666;
+    font-style: italic;
+}
+
+.heart-signature {
+    color: #ff6b9d;
+    font-weight: bold;
+    font-size: 1.2em;
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Floating Hearts */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2em;
+    animation: floatUp 4s ease-in infinite;
+    opacity: 0;
+}
+
+.floating-heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 0.8s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 1.6s;
+}
+
+.floating-heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 2.4s;
+}
+
+.floating-heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 3.2s;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: -50px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .envelope {
+        width: 300px;
+        height: 250px;
+    }
+    
+    .envelope-flap {
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-top: 120px solid #ff6b9d;
+    }
+    
+    .letter h2 {
+        font-size: 1.2em;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    
+    .paper {
+        padding: 30px 20px;
+    }
+    
+    .paper h1 {
+        font-size: 1.5em;
+    }
+    
+    .letter-text {
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Question screens -->
+        <div class="question-screen active" id="question1">
+            <div class="emoji-face" id="emoji-1">😊</div>
+            <div class="envelope" id="envelope1">
+                <div class="envelope-body"></div>
+                <div class="letter">
+                    <h2>Do you love me?</h2>
+                    <div class="buttons">
+                        <button class="btn yes-btn" onclick="nextQuestion(2)">Yes! 💖</button>
+                        <button class="btn no-btn" id="no-btn-1">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-screen" id="question2">
+            <div class="emoji-face" id="emoji-2">😊</div>
+            <div class="envelope" id="envelope2">
+                <div class="envelope-body"></div>
+                <div class="letter">
+                    <h2>I love you too! 💕<br><br>Would you like the idea of spending the rest of your life with me?</h2>
+                    <div class="buttons">
+                        <button class="btn yes-btn" onclick="nextQuestion(3)">Yes! 💖</button>
+                        <button class="btn no-btn" id="no-btn-2">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-screen" id="question3">
+            <div class="emoji-face" id="emoji-3">😊</div>
+            <div class="envelope" id="envelope3">
+                <div class="envelope-body"></div>
+                <div class="letter">
+                    <h2>I would be a great boyfriend. I promise!<br><br>Ohh wait-- So does that mean you are my girlfriend???</h2>
+                    <div class="buttons">
+                        <button class="btn yes-btn" onclick="nextQuestion(4)">Yes! 💖</button>
+                        <button class="btn no-btn" id="no-btn-3">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-screen" id="question4">
+            <div class="emoji-face" id="emoji-4">😊</div>
+            <div class="envelope" id="envelope4">
+                <div class="envelope-body"></div>
+                <div class="letter">
+                    <h2>I am so happy babyy! 😊<br><br>I'm kinda shy to say this..but umm..<br><br>Would you like to be my Valentine?</h2>
+                    <div class="buttons">
+                        <button class="btn yes-btn" onclick="showFinalMessage()">Yes! 💖</button>
+                        <button class="btn no-btn" id="no-btn-4">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final message screen -->
+        <div class="final-screen" id="final-screen">
+            <div class="flower">
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+                <div class="petal petal-1"></div>
+                <div class="petal petal-2"></div>
+                <div class="petal petal-3"></div>
+                <div class="petal petal-4"></div>
+                <div class="petal petal-5"></div>
+                <div class="center"></div>
+            </div>
+            
+            <div class="love-letter">
+                <div class="paper">
+                    <div class="paper-content">
+                        <h1>💕 To My Valentine 💕</h1>
+                        <p class="letter-text">
+                            From the moment you said "yes," my heart has been dancing with joy! 
+                            You've made me the happiest person in the world. ✨
+                        </p>
+                        <p class="letter-text">
+                            Every second with you feels like a beautiful dream I never want to wake up from. 
+                            Your smile lights up my darkest days, and your laughter is my favorite melody. 🎵
+                        </p>
+                        <p class="letter-text">
+                            I promise to cherish every moment we share, to make you smile every single day, 
+                            and to love you more with each passing heartbeat. 💗
+                        </p>
+                        <p class="letter-text">
+                            Thank you for being mine, for choosing us, for this beautiful journey we're about to embark on together.
+                        </p>
+                        <p class="signature">
+                            Forever yours,<br>
+                            <span class="heart-signature">💖 Your Valentine 💖</span>
+                        </p>
+                        <div class="floating-hearts">
+                            <span class="floating-heart">💕</span>
+                            <span class="floating-heart">💖</span>
+                            <span class="floating-heart">💗</span>
+                            <span class="floating-heart">💝</span>
+                            <span class="floating-heart">💕</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
